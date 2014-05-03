@@ -1,0 +1,12 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  padding: 50px;
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+a {
+  color: #00B7FF;
+}
