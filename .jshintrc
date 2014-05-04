@@ -17,7 +17,7 @@
   "devel": false,
 
   "strict": true,
-  "globalstrict": true,
+  "globalstrict": false,
 
   "asi": false,
   "laxbreak": false,
