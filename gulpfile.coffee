@@ -16,6 +16,7 @@ sass = require 'gulp-ruby-sass'
 tiny_lr = require 'tiny-lr'
 server = tiny_lr()
 uglify = require 'gulp-uglify'
+mocha = require 'gulp-mocha'
 
 # Help
 gulp.task 'help', help
@@ -102,3 +103,10 @@ gulp.task 'watch', ->
     gulp.watch 'src/js/**/*.coffee', ['coffee']
     gulp.watch 'src/css/**/*.scss', ['styles']
     gulp.watch 'src/images/**/*', ['images']
+
+gulp.task 'mocha', ->
+  gulp.src './test/**/*.js'
+  .pipe mocha {reporter: 'spec'}
+
+gulp.task 'test', ['mocha']
+
