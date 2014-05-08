@@ -109,4 +109,3 @@ gulp.task 'mocha', ->
   .pipe mocha {reporter: 'spec'}
 
 gulp.task 'test', ['mocha']
-
