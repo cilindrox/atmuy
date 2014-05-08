@@ -3,7 +3,8 @@ atmuy
 
 Proyecto de ubicación de ATMs en Montevideo
 
-[![Build Status](https://travis-ci.org/gfestari/atmuy.svg?branch=master)](https://travis-ci.org/gfestari/atmuy)
+[![Build Status](https://travis-ci.org/gfestari/atmuy.svg?branch=master)](https://travis-ci.org/gfestari/atmuy) [![Dependency Status](https://gemnasium.com/gfestari/atmuy.svg)](https://gemnasium.com/gfestari/atmuy)
+
 
 ## Installation
 
