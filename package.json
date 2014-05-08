@@ -19,6 +19,7 @@
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {
+    "coffee-script": "^1.7.1",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "0.0.7",
     "gulp-cache": "^0.1.3",
