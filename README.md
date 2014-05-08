@@ -3,6 +3,8 @@ atmuy
 
 Proyecto de ubicación de ATMs en Montevideo
 
+[![Build Status](https://travis-ci.org/gfestari/atmuy.svg?branch=master)](https://travis-ci.org/gfestari/atmuy)
+
 ## Installation
 
 1. Clone the repo and `cd` to the folder
@@ -31,4 +33,3 @@ For more details, take a look at [CONTRIBUTING].
 Apache 2.0
 
 [mongoDB]: http://www.mongodb.org/downloads
-[CONTRIBUTING]: (CONTRIBUTING.md)
