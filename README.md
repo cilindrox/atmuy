@@ -6,10 +6,10 @@ Proyecto de ubicación de ATMs en Montevideo
 ## Installation
 
 1. Clone the repo and `cd` to the folder
-2. Start mongoDB using the local `data` folder: `mongod --dbpath "$(pwd)/data"&`
+2. Start [mongoDB] using the local `data` folder: `mongod --dbpath "$(pwd)/data"&`
 2. `npm install`
 3. `npm start`
-4. Open your browser and point it towards [localhost:3000]
+4. Open your browser and point it towards [http://localhost:3333]()
 
 ### Dependencies
 
@@ -19,8 +19,16 @@ We recommend having an instance of mongo running prior to starting the app. Like
 
 ## Contributing
 
-See [CONTRIBUTING.md]
+1. Fork the repo
+2. `make test`
+3. *hack, hack, hack*
+4. Create a pull request with your changes
+
+For more details, take a look at [CONTRIBUTING].
 
 ## License
 
 Apache 2.0
+
+[mongoDB]: http://www.mongodb.org/downloads
+[CONTRIBUTING]: (CONTRIBUTING.md)

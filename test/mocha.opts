@@ -1,5 +1,5 @@
 --require should
---reporter spec
+--reporter nyan
 --ui bdd
 --recursive
 --timeout 5000
