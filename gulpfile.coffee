@@ -13,8 +13,7 @@ minifycss = require 'gulp-minify-css'
 notify = require 'gulp-notify'
 rename = require 'gulp-rename'
 sass = require 'gulp-ruby-sass'
-tiny_lr = require 'tiny-lr'
-server = tiny_lr()
+server = require('tiny-lr')()
 uglify = require 'gulp-uglify'
 mocha = require 'gulp-mocha'
 
