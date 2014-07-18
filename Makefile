@@ -1,14 +1,21 @@
 
 test:
-	@NODE_ENV=test NODE_TLS_REJECT_UNAUTHORIZED=0 ./node_modules/.bin/mocha
+	@NODE_ENV=test \
+		NODE_TLS_REJECT_UNAUTHORIZED=0 \
+		./node_modules/.bin/mocha
 
-compile:
-	./node_modules/.bin/gulp
+run:
+	@NODE_ENV='production' \
+		npm start
 
-test-server:
-	@node test/server
+dev:
+	@NODE_ENV='development' \
+		npm start
+
+start-db:
+	@mongod --dbpath './data'&
 
 clean:
-	./node_modules/.bin/gulp clean
+	@rm -rf ./node_modules
 
-.PHONY: test
+.PHONY: test run dev clean start-db

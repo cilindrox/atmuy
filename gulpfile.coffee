@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 autoprefixer = require 'gulp-autoprefixer'
 cache = require 'gulp-cache'
-clean = require 'gulp-clean'
+rimraf = require 'rimraf'
 coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 gutil = require 'gulp-util'
@@ -85,7 +85,7 @@ gulp.task 'clean', ->
     , 'public/javascripts'
     , 'public/images'
     ], { read: false }
-    .pipe clean()
+    .pipe rimraf()
 
 # Default task -- Run the following tasks by default
 gulp.task 'default', ->
