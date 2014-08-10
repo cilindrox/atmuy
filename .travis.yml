@@ -1,13 +1,18 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.11"
+- '0.10'
+- '0.11'
 before_install:
-  - npm install -g coffee-script
-  - npm install -g gulp
+- npm install -g coffee-script
+- npm install -g gulp
 script:
-  - gulp test
+- make test
 matrix:
   allow_failures:
-    - node_js: "0.11"
+  - node_js: '0.11'
   fast_finish: true
+services:
+- mongodb
+notifications:
+  slack:
+    secure: PAFeyQQtjtsLK2W0ZbVUYJHdSjTze7DD+h2Tsmw745zxGZPNAetiSYzcud4lLSyhp5TpU/cdnoOst33Nv5lz84aoQCoMbWUdvVgqvlcP7mgkK2owAx8L6yGvLZ69N5tlI3e9KAhZw3wpGdOvgkfAY4ezt0YzPn48xvd0t/vvNDk=

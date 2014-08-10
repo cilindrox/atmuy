@@ -1,19 +1,22 @@
 'use strict';
 
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express')
+  , path = require('path')
+  , favicon = require('static-favicon')
+  , logger = require('morgan')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var atms = require('./routes/atms');
+var routes = require('./routes/index')
+  , atms = require('./routes/atms');
 
 // DB connection
-var mongoskin = require('mongoskin');
-var db = mongoskin.db("mongodb://localhost:27017/express", { safe: true });
+// var redis = require('redis')
+//   .createClient();
+
+// redis.on('error', function(err) {
+//   console.log('>>> ERROR: ' + err);
+// });
 
 var app = express();
 
@@ -24,20 +27,15 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(favicon());
-app.use(logger('dev'));
+app.use(logger('dev')); // TODO(gfestari): use NODE_ENV for log level.
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Pass the db to our router
-app.use(function (req, res, next) {
-  req.db = db;
-  next();
-});
-
 app.use('/', routes);
-app.use('/users', users);
 app.use('/atms', atms);
 
 /// catch 404 and forwarding to error handler

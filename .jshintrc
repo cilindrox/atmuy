@@ -3,7 +3,7 @@
   "maxerr": 100,
 
   "browser": true,
-  "node": false,
+  "node": true,
   "rhino": false,
   "couch": false,
   "wsh": false,
@@ -42,7 +42,7 @@
   "validthis": false,
   "smarttabs": true,
   "proto": false,
-  "onecase": false,
+  "camelcase": true,
   "nonstandard": false,
   "multistr": false,
   "laxcomma": true,
@@ -51,7 +51,7 @@
   "funcscope": false,
   "esnext": false,
 
-  "newcap": false,
+  "newcap": true,
   "noempty": false,
   "nonew": false,
   "nomen": false,
@@ -61,11 +61,13 @@
   "trailing": false,
   "indent": 2,
   "white": true,
+  "quotmark": "single",
 
   "maxparams": 5,
   "maxdepth": 3,
-  "maxstatements": 25,
+  "maxstatements": 15,
   "maxcomplexity": 6,
+  "maxlen": 80,
 
   "predef": ["define", "requirejs"]
 }
