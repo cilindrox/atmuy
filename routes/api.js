@@ -27,7 +27,7 @@ function loadAtm(req, res, next) {
       req.atm = doc;
       next();
     } else {
-      res.status(404).json({ error: 'item ' + uid + ' not found' });
+      res.send(404, { error: 'item ' + uid + ' not found' });
     }
   });
 }
@@ -38,7 +38,7 @@ function validateBody(req, res, next) {
 
   Atm.validate(body, function(validation) {
     if (validation.valid === false) {
-      res.status(400).json({ errors: validation.errors });
+      res.send(400, { error: validation.errors });
     } else {
       req.atm = new Atm(body);
       next();
@@ -60,16 +60,21 @@ router.get('/', function(req, res, next) {
 });
 
 // POST -- add a new ATM
+
 router.post('/', validateBody, function(req, res, next) {
   var atm = req.atm;
   atm.save(function(err, result) {
     if (err) return next(err);
     if (result.length === 1) {
-      res.json(result[0]);
+      res.send(201, result[0]);
     } else {
       next(new Error('could not create document'));
     }
   });
+});
+
+router.post('/*', function(req, res) {
+  res.header('Allow', 'GET, PUT, DELETE').send(405);
 });
 
 router.put('/:uid', [loadAtm, validateBody], function(req, res, next) {
