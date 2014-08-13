@@ -74,7 +74,16 @@ describe('ATM api', function() {
       .end(function(err, res) {
         if (err) return done(err);
         expect(res.body)
-          .to.have.property('message', 'item removed');
+          .to.have.property('uid', id);
+        expect(res.body)
+          .to.have.keys([
+            'uid'
+            , 'created_at'
+            , 'updated_at'
+            , 'lat'
+            , 'lon'
+            , 'address'
+          ]);
         done();
       });
   })
