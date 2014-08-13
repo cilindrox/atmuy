@@ -7,8 +7,7 @@ var express = require('express')
   , cookieParser = require('cookie-parser')
   , bodyParser = require('body-parser');
 
-var routes = require('./routes/index')
-  , atms = require('./routes/atms');
+var api = require('./routes/api');
 
 // DB connection
 // var redis = require('redis')
@@ -35,8 +34,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/atms', atms);
+// app.use('/', routes); // TODO(gfestari): use web app
+app.use('/api/atms', api);
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {

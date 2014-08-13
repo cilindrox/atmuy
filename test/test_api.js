@@ -32,7 +32,7 @@ describe('ATM api', function() {
   it('retrieves a single ATM by id', function(done) {
     var uuid = atm.uid;
     request(app)
-      .get('/atms/' + uuid)
+      .get('/api/atms/' + uuid)
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
@@ -44,7 +44,7 @@ describe('ATM api', function() {
 
   it('responds with an error if :id not found', function(done) {
     request(app)
-      .get('/atms/3')
+      .get('/api/atms/3')
       .expect(404)
       .end(function(err, res) {
         if (err) return done(err);
@@ -56,7 +56,7 @@ describe('ATM api', function() {
 
   it('retrieves a list of all available ATMs', function(done) {
     request(app)
-      .get('/atms')
+      .get('/api/atms')
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
@@ -69,7 +69,7 @@ describe('ATM api', function() {
   it('deletes a single entry by uid', function(done) {
     var id = atm.uid;
     request(app)
-      .del('/atms/' + atm.uid)
+      .del('/api/atms/' + atm.uid)
       .expect(200)
       .end(function(err, res) {
         if (err) return done(err);
@@ -81,7 +81,7 @@ describe('ATM api', function() {
 
   it('returns an error message when deleting an invalid entry', function(done) {
     request(app)
-      .del('/atms/3')
+      .del('/api/atms/3')
       .expect(404)
       .end(function(err, res) {
         if (err) return done(err);
@@ -100,7 +100,7 @@ describe('ATM api', function() {
       , address: '221b Baker Street, London'
     };
     request(app)
-      .put('/atms/' + uid)
+      .put('/api/atms/' + uid)
       .send(data)
       .expect(200)
       .end(function(err, res) {
@@ -113,7 +113,7 @@ describe('ATM api', function() {
 
   it('returns an error if item cannot be updated', function(done) {
     request(app)
-      .put('/atms/3')
+      .put('/api/atms/3')
       .send(atm)
       .expect(404)
       .end(function(err, res) {
@@ -131,9 +131,9 @@ describe('ATM api', function() {
       , address: '221b Baker Street, London'
     };
     request(app)
-      .post('/atms')
+      .post('/api/atms')
       .send(data)
-      .expect(200)
+      .expect(201)
       .end(function(err, res) {
         if (err) return done(err);
         expect(res.body)
@@ -142,27 +142,31 @@ describe('ATM api', function() {
       });
   })
 
-  it('responds with 404 if invalid POST route', function(done) {
+  it('responds with 405 if method not allowed', function(done) {
     var data = {
       lat: '33.3333'
       , lon: '-33.3333'
       , address: '221b Baker Street, London'
     };
     request(app)
-      .post('/atms/5')
+      .post('/api/atms/5')
       .send(data)
-      .expect(404);
-    done();
+      .expect(405)
+      .end(function(err, res) {
+        expect(res.body).to.be.empty;
+        expect(res.header).to.have.property('allow', 'GET, PUT, DELETE');
+        done();
+      });
   })
 
   it('returns an error if document creation fails', function(done) {
     request(app)
-      .post('/atms')
+      .post('/api/atms')
       .send({})
       .expect(400)
       .end(function(err, res) {
         if (err) return done(err);
-        expect(res.body.errors)
+        expect(res.body.error)
           .to.have.length.above(2);
         done();
       });
