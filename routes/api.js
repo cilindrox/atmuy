@@ -74,7 +74,8 @@ router.post('/', validateBody, function(req, res, next) {
 });
 
 router.post('/*', function(req, res) {
-  res.header('Allow', 'GET, PUT, DELETE').send(405);
+  res.set('Allow', 'GET, PUT, DELETE');
+  res.send(405, 'Method Not Allowed');
 });
 
 router.put('/:uid', [loadAtm, validateBody], function(req, res, next) {
@@ -96,8 +97,8 @@ router.put('/:uid', [loadAtm, validateBody], function(req, res, next) {
 router.delete('/:uid', loadAtm, function(req, res, next) {
   Atm.remove(req.params.uid, function(err, result) {
     if (err) return next(err);
-    if ( result === 1) {
-      res.json({ message: 'item removed' });
+    if (result === 1) {
+      res.json(req.atm);
     } else {
       next(new Error('item could not be saved'));
     }

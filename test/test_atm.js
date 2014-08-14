@@ -81,7 +81,14 @@ describe('Atm', function() {
       Atm.getByUid(atm.uid, function(err, doc) {
         if (err) return done(err);
         expect(doc)
-          .to.have.property('_id');
+          .to.have.keys([
+            'uid'
+            , 'created_at'
+            , 'updated_at'
+            , 'lat'
+            , 'lon'
+            , 'address'
+          ]);
         done();
       });
     })
