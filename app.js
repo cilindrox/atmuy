@@ -5,9 +5,10 @@ var express = require('express')
   , favicon = require('static-favicon')
   , logger = require('morgan')
   , cookieParser = require('cookie-parser')
-  , bodyParser = require('body-parser');
+  , bodyParser = require('body-parser')
+  ;
 
-var api = require('./routes/api');
+var router = require('./routes');
 
 // DB connection
 // var redis = require('redis')
@@ -34,8 +35,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', routes); // TODO(gfestari): use web app
-app.use('/api/atms', api);
+/// Initialize routes
+router(app);
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {
