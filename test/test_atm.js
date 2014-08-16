@@ -1,6 +1,8 @@
 var chai = require('chai')
-  , expect = chai.expect;
-chai.use(require('chai-datetime'));
+  , datetime = require('chai-datetime')
+  , expect = chai.expect
+  ;
+chai.use(datetime);
 
 var Atm = require('../lib/atm');
 var db = require('../lib/config').db;
