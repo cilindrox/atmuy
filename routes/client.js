@@ -16,7 +16,7 @@ router.param('uid', function(req, res, next, uid) {
 
 router.route('/:uid?')
   .get(function (req, res, next) {
-    res.render('index');
+    res.render('index', { title: 'ATMuy'});
   });
 
 
