@@ -34,3 +34,4 @@ For more details, take a look at [CONTRIBUTING].
 Apache 2.0
 
 [mongoDB]: http://www.mongodb.org/downloads
+[CONTRIBUTING]: CONTRIBUTING.md
