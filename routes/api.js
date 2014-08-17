@@ -24,11 +24,11 @@ function loadAtm(req, res, next) {
   var uid = req.params.uid;
   Atm.getByUid(uid, function(err, doc) {
     if (err) return next(err);
-    if (doc !== null) {
+    if (doc === null) {
+      res.status(404).send({ error: 'item ' + uid + ' not found' });
+    } else {
       req.atm = doc;
       next();
-    } else {
-      res.send(404, { error: 'item ' + uid + ' not found' });
     }
   });
 }
@@ -39,7 +39,7 @@ function validateBody(req, res, next) {
 
   Atm.validate(body, function(validation) {
     if (validation.valid === false) {
-      res.send(400, { error: validation.errors });
+      res.status(400).send({ error: validation.errors });
     } else {
       req.atm = new Atm(body);
       next();
@@ -67,7 +67,7 @@ router.post('/', validateBody, function(req, res, next) {
   atm.save(function(err, result) {
     if (err) return next(err);
     if (result.length === 1) {
-      res.send(201, result[0]);
+      res.status(201).send(result[0]);
     } else {
       next(new Error('could not create document'));
     }
@@ -76,7 +76,7 @@ router.post('/', validateBody, function(req, res, next) {
 
 router.post('/*', function(req, res) {
   res.set('Allow', 'GET, PUT, DELETE');
-  res.send(405, 'Method Not Allowed');
+  res.status(405).send('Method Not Allowed');
 });
 
 router.put('/:uid', [loadAtm, validateBody], function(req, res, next) {
