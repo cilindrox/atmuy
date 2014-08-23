@@ -3,9 +3,9 @@
 var expect = require('chai').expect;
 var request = require('supertest');
 
-var app = require('../app')
-  , Atm = require('../lib/atm')
-  , db = require('../lib/config').db
+var app = require('../../app')
+  , Atm = require('../../lib/atm')
+  , db = require('../../lib/config').db
   ;
 
 describe('ATM api', function() {

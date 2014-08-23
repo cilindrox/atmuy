@@ -5,13 +5,15 @@ node_js:
 before_install:
 - npm install -g coffee-script
 script:
-- make test
+- make test-cov
 matrix:
   allow_failures:
   - node_js: '0.11'
   fast_finish: true
 services:
 - mongodb
+after_success:
+- make coveralls
 notifications:
   slack:
     secure: PAFeyQQtjtsLK2W0ZbVUYJHdSjTze7DD+h2Tsmw745zxGZPNAetiSYzcud4lLSyhp5TpU/cdnoOst33Nv5lz84aoQCoMbWUdvVgqvlcP7mgkK2owAx8L6yGvLZ69N5tlI3e9KAhZw3wpGdOvgkfAY4ezt0YzPn48xvd0t/vvNDk=

@@ -3,3 +3,5 @@
 --ui bdd
 --recursive
 --growl
+--bail
+--require test/support/env

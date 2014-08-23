@@ -1,8 +1,16 @@
 
+MOCHA=node_modules/mocha/bin/_mocha
+ISTANBUL=node_modules/istanbul/lib/cli.js
+COVERAGE_REPORT=coverage/lcov.info
+COVERALLS = node_modules/coveralls/bin/coveralls.js
+
 test:
-	@NODE_ENV=test \
-		NODE_TLS_REJECT_UNAUTHORIZED=0 \
-		./node_modules/.bin/mocha
+	@NODE_TLS_REJECT_UNAUTHORIZED=0 \
+		$(MOCHA)
+
+test-cov:
+	@$(ISTANBUL) cover $(MOCHA) -- \
+		--reporter dot
 
 run:
 	@NODE_ENV='production' \
@@ -16,6 +24,10 @@ start-db:
 	@mongod --dbpath './data'&
 
 clean:
-	@rm -rf ./node_modules
+	@rm -rf ./coverage
 
-.PHONY: test run dev clean start-db
+coveralls:
+	cat $(COVERAGE_REPORT) | $(COVERALLS) \
+		&& make clean
+
+.PHONY: test test-cov run dev clean start-db
