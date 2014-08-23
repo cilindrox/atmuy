@@ -1,8 +1,9 @@
 
-MOCHA=node_modules/mocha/bin/_mocha
-ISTANBUL=node_modules/istanbul/lib/cli.js
+NODE_MODULES=node_modules/.bin
+MOCHA=$(NODE_MODULES)/mocha
+ISTANBUL=$(NODE_MODULES)/istanbul
 COVERAGE_REPORT=coverage/lcov.info
-COVERALLS = node_modules/coveralls/bin/coveralls.js
+COVERALLS=$(NODE_MODULES)/coveralls
 
 test:
 	@NODE_TLS_REJECT_UNAUTHORIZED=0 \
